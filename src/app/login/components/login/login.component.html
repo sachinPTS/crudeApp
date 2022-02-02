@@ -3,7 +3,7 @@
 <div class="formContainer">
     <h4>Login</h4>
   
-    <form>
+    <form #loginForm="ngForm"> 
       <div class="form-group">
         <label for="usr">*Name:</label>
         <input
@@ -14,17 +14,18 @@
           name="userName"
           minlength="3"
           required
-          
+          [(ngModel)]="username"
+          #userName="ngModel"
         />
         <div
           class="alert alert-danger"
-          
+          *ngIf="userName.touched && userName.errors?.required"
         >
           <strong>Error!</strong> This field is required.
         </div>
         <div
           class="alert alert-danger"
-         
+          *ngIf="userName.touched && userName.errors?.minlength"
         >
           <strong>Error!</strong> This field requires minimum 3 characters.
         </div>
@@ -40,17 +41,18 @@
           name="password"
           minlength="6"
           required
-          
+          [(ngModel)]="password"
+          #pwr="ngModel"
         />
         <div
           class="alert alert-danger"
-          
+          *ngIf="pwr.touched && pwr.errors?.required"
         >
           <strong>Error!</strong> This field is required.
         </div>
         <div
           class="alert alert-danger"
-          
+          *ngIf="pwr.touched && pwr.errors?.minlength"
         >
           <strong>Error!</strong> This field requires minimum 6 characters.
         </div>
@@ -66,6 +68,7 @@
         <button
           type="submit"
           class="btn btn-primary submitBtn"
+          (click)="submitForm(loginForm,userName)"
           
         >
           Submit
