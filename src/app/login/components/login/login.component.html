@@ -19,13 +19,13 @@
         />
         <div
           class="alert alert-danger"
-          *ngIf="userName.touched && userName.errors?.required"
+          *ngIf="(userName.touched || loginForm.submitted) && userName.errors?.required"
         >
           <strong>Error!</strong> This field is required.
         </div>
         <div
           class="alert alert-danger"
-          *ngIf="userName.touched && userName.errors?.minlength"
+          *ngIf="(userName.touched || loginForm.submitted) && userName.errors?.minlength"
         >
           <strong>Error!</strong> This field requires minimum 3 characters.
         </div>
@@ -46,22 +46,29 @@
         />
         <div
           class="alert alert-danger"
-          *ngIf="pwr.touched && pwr.errors?.required"
+          *ngIf="(pwr.touched || loginForm.submitted) && pwr.errors?.required"
         >
           <strong>Error!</strong> This field is required.
         </div>
         <div
           class="alert alert-danger"
-          *ngIf="pwr.touched && pwr.errors?.minlength"
+          *ngIf="(pwr.touched || loginForm.submitted) && pwr.errors?.minlength"
         >
           <strong>Error!</strong> This field requires minimum 6 characters.
         </div>
       </div>
+      <div
+          class="alert alert-danger"
+          *ngIf="errorStr"
+        >
+          {{errorStr}}
+        </div>
+
       <div class="form-group clearfix">
         <button
           type="button"
           class="btn btn-secondary clearBtn"
-          
+          (click)="clearFun(loginForm)"
         >
           Clear
         </button>

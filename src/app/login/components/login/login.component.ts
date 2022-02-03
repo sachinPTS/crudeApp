@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import {LoginService} from '../../services/login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,12 +10,34 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
 username="";
 password="";
-  constructor() { }
+errorStr=null;
+  constructor(private loginService:LoginService,private router:Router) { }
 
   ngOnInit(): void {
   }
   submitForm(form:NgForm,username){
-console.log(form,username);
+    this.errorStr=null;
+if(form.invalid){
+  return;
+}
+this.loginService.checkLogin(form).subscribe(
+  (response:any)=>{
+    console.log('success',response);
+    if(response.Status){
+  this.router.navigate(['/dashboard']);
+    }
+    else{
+  this.errorStr=response.Message
+    }
+  },
+  (error)=>{
+    console.log('error',error)
+  }
+)
+
+  }
+  clearFun(f:NgForm){
+    f.reset();
   }
 
 }
