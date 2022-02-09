@@ -24,7 +24,12 @@ this.loginService.checkLogin(form).subscribe(
   (response:any)=>{
     console.log('success',response);
     if(response.Status){
-  this.router.navigate(['/dashboard']);
+      if(response.Data.UserRole==1){
+        this.router.navigate(['/dashboard/admin']);
+      }else{
+        this.router.navigate(['/dashboard/user']);
+      }
+      
     }
     else{
   this.errorStr=response.Message
