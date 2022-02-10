@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {LoginService} from '../../services/login.service';
+import {StorageService} from '../../../services/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 username="";
 password="";
 errorStr=null;
-  constructor(private loginService:LoginService,private router:Router) { }
+  constructor(private loginService:LoginService,private router:Router,private storageService:StorageService) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +25,7 @@ this.loginService.checkLogin(form).subscribe(
   (response:any)=>{
     console.log('success',response);
     if(response.Status){
+      this.storageService.setUserData(response.Data)
       if(response.Data.UserRole==1){
         this.router.navigate(['/dashboard/admin']);
       }else{
