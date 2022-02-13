@@ -1,4 +1,4 @@
-<p>admin-dashboard works!</p>
+
 Hello {{user.UserName}}
 <button
 type="button"
@@ -7,3 +7,61 @@ class="btn btn-primary"
 >
 LogOut
 </button>
+<div>
+    <a
+    href="#"
+    class="btn btn-primary addBtn"
+    
+    >Add Product</a
+  >
+  <input
+    type="text"
+    placeholder="search product by name"
+    
+  />
+</div>
+<p-table [value]="productArr">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-obj let-rowIndex="rowIndex">
+        <tr>
+            <td>{{rowIndex+1}}</td>
+            <td><img [src]="obj.Product_URl" /></td>
+            <td>{{obj.Product_Name}}</td>
+            <td>{{obj.Product_Color}}</td>
+            <td>{{obj.Product_Size}}</td>
+            <td>{{obj.Product_Price}}</td>
+            <td><button
+                type="button"
+                class="btn btn-primary"
+              >
+                Edit
+              </button>
+            </td>
+            <td><button
+                type="button"
+                class="btn btn-danger"    
+              >
+                Delete
+              </button>
+            </td>
+            <td><button
+                type="button"
+                class="btn btn-success"
+              >
+                View
+              </button></td>
+        </tr>
+    </ng-template>
+</p-table>
