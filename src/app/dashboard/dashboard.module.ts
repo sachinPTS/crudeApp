@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import {TableModule} from 'primeng/table';
 
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     TableModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ],
   providers:[ProductService]

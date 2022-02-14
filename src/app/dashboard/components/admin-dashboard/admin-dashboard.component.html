@@ -17,7 +17,8 @@ LogOut
   <input
     type="text"
     placeholder="search product by name"
-    
+    [(ngModel)]="searchTxt"
+    (ngModelChange)="filterProductArr()"
   />
 </div>
 <p-table [value]="productArr">
@@ -39,9 +40,9 @@ LogOut
             <td>{{rowIndex+1}}</td>
             <td><img [src]="obj.Product_URl" /></td>
             <td>{{obj.Product_Name}}</td>
-            <td>{{obj.Product_Color}}</td>
+            <td [ngStyle]="{'background-color': obj.Product_Color}"></td>
             <td>{{obj.Product_Size}}</td>
-            <td>{{obj.Product_Price}}</td>
+            <td>{{obj.Product_Price | currency:'INR'}}</td>
             <td><button
                 type="button"
                 class="btn btn-primary"
@@ -51,7 +52,8 @@ LogOut
             </td>
             <td><button
                 type="button"
-                class="btn btn-danger"    
+                class="btn btn-danger"  
+                (click)="deleteProduct(obj.Product_ID,obj.Product_Name)"  
               >
                 Delete
               </button>
