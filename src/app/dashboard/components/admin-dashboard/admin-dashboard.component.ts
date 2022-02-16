@@ -38,7 +38,7 @@ searchTxt='';
   filterProductArr(){
     console.log(this.searchTxt)
     this.productArr=this.productService.getProductList().filter(
-      (prod) => prod.Product_Name.indexOf(this.searchTxt) > -1
+      (prod) => prod.Product_Name.indexOf(this.searchTxt) > -1 || prod.Product_Price.indexOf(this.searchTxt) > -1
     );
   }
   getAllProductList(){

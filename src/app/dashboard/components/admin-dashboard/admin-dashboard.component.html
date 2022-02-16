@@ -11,7 +11,7 @@ LogOut
     <a
     href="#"
     class="btn btn-primary addBtn"
-    
+    [routerLink]="['/dashboard/addProduct','add']"
     >Add Product</a
   >
   <input
@@ -46,6 +46,7 @@ LogOut
             <td><button
                 type="button"
                 class="btn btn-primary"
+                [routerLink]="['/dashboard/editProduct','edit',obj.Product_ID]"
               >
                 Edit
               </button>
@@ -61,6 +62,7 @@ LogOut
             <td><button
                 type="button"
                 class="btn btn-success"
+                [routerLink]="['/dashboard/viewProduct','view',obj.Product_ID]"
               >
                 View
               </button></td>
