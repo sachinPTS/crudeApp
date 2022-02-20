@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
 import {LoginService} from './services/login.service';
+import { LoaderInterceptor } from '../interceptor/loader.interceptor';
+
 const routes: Routes = [
 {path:"login",component:LoginComponent},
 {path:"registration",component:RegistrationComponent},
@@ -17,7 +19,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  providers:[LoginService],
+  providers:[LoginService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
   declarations: [LoginComponent, RegistrationComponent, ForgotpassComponent],
   imports: [
     CommonModule,
